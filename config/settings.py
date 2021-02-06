@@ -37,6 +37,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # the login page for registering new users, signing in existing users, and helping users remember passwords
+    'login',
+    # the main chatroom. users can chat with friends, visualize their portfolios, ask a bot for advice, and learn ESG of stocks.
+    'chatroom',
 ]
 
 MIDDLEWARE = [
