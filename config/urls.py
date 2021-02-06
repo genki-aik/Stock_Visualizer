@@ -15,11 +15,17 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.views.generic.base import TemplateView # new
 
 urlpatterns = [
-    path('',include('login.urls')), # this links with the urls from login folder
-    path('signup/',include('login.urls')), 
-    path('forgot/',include('login.urls')), 
+    
+    path('accounts/', include('django.contrib.auth.urls')),
+    path('', TemplateView.as_view(template_name='home.html'), name='home'), # new
+
+    ### Temporarily testing the new login function
+    #path('',include('login.urls')), # this links with the urls from login folder
+    #path('signup/',include('login.urls')), 
+    #path('forgot/',include('login.urls')), 
 
     path('chatroom/',include('chatroom.urls')), # this links with the urls from chatroom folder
     path('admin/', admin.site.urls),
