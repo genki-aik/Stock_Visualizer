@@ -4,6 +4,7 @@ from nltk.stem.wordnet import WordNetLemmatizer
 from nltk.corpus import stopwords
 from nltk import FreqDist
 import re, string
+import random
 
 positive_tweets = twitter_samples.strings('positive_tweets.json')
 negative_tweets = twitter_samples.strings('negative_tweets.json')
@@ -53,6 +54,11 @@ def get_all_words(cleaned_tokens_list):
         for token in tokens:
             yield token
 
+# function to convert list to dictionary
+def get_tweets_for_model(cleaned_tokens_list):
+    for tweet_tokens in cleaned_tokens_list:
+        yield dict([token, True] for token in tweet_tokens)
+
 stop_words = stopwords.words('english')
 
 print(lemmatize_sentence(tweet_tokens[0]))
@@ -76,3 +82,6 @@ for tokens in negative_tweet_tokens:
 all_pos_words = get_all_words(positive_cleaned_tokens_list)
 freq_dist_pos = FreqDist(all_pos_words)
 #print(freq_dist_pos.most_common(10))
+
+positive_tokens_for_model = get_tweets_for_model(positive_cleaned_tokens_list)
+negative_tokens_for_model = get_tweets_for_model(negative_cleaned_tokens_list)
