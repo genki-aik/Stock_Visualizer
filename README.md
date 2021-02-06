@@ -2,6 +2,9 @@
 
 ### Investing Group Chat Webapp
 
+### How to code in the Github 
+Everyone in the team should have their own branch in github. if you are working on your own enhancements to the program, then work on your specific branch before working on the main branch. This will protect everyone from not destroying each others code.
+
 ### Steps to start coding
 1) Download this git folder into a place you can work in your computer.  
 2) Download python3 if you do not have it  
