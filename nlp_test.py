@@ -3,6 +3,8 @@ from nltk.tag import pos_tag
 from nltk.stem.wordnet import WordNetLemmatizer
 from nltk.corpus import stopwords
 from nltk import FreqDist
+from nltk import classify
+from nltk import NaiveBayesClassifier
 import re, string
 import random
 
@@ -85,3 +87,22 @@ freq_dist_pos = FreqDist(all_pos_words)
 
 positive_tokens_for_model = get_tweets_for_model(positive_cleaned_tokens_list)
 negative_tokens_for_model = get_tweets_for_model(negative_cleaned_tokens_list)
+
+positive_dataset = [(tweet_dict, "Positive")
+                     for tweet_dict in positive_tokens_for_model]
+
+negative_dataset = [(tweet_dict, "Negative")
+                     for tweet_dict in negative_tokens_for_model]
+
+dataset = positive_dataset + negative_dataset
+
+random.shuffle(dataset)
+
+train_data = dataset[:7000]
+test_data = dataset[7000:]
+
+classifier = NaiveBayesClassifier.train(train_data)
+
+print("Accuracy is:", classify.accuracy(classifier, test_data))
+
+print(classifier.show_most_informative_features(10))
