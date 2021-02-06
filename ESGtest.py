@@ -21,7 +21,11 @@ def get_esg_data(company):
 
     #Convert to json object
     output = json.loads(response.text)
+<<<<<<< HEAD
     print(output)
+=======
+    #print(output)
+>>>>>>> f7de9dc... Added ESG data retrieval
     #print(type(output))
     #Access specific attributes
     print("OUTPUT: " + output[0]['company_name'])
