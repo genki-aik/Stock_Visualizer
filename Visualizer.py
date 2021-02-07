@@ -63,5 +63,35 @@ def cumulative_return(beginning, ending, *tickers):
     plt.show()
     plt.close()
 
+# Moving average graph
+def moving_average(ticker, beginning, ending):
+    stock = yf.download(ticker, beginning, ending)['Adj Close']
+    
+
+    plt.style.use('seaborn')
+    fig, ax = plt.subplots(figsize=(12, 6))
+
+    # Calculate 20 and 100 days moving averages of closing prices
+    stock_20_ma = stock.rolling(window=20).mean()
+    stock_100_ma = stock.rolling(window=100).mean()
+
+    # Start from 2019-05-24 as there are no data before for 100-day
+    start_date = '2019-05-24 00:00:00'
+    ax.plot(stock[start_date:], label='MSFT')
+    ax.plot(stock_20_ma[start_date:], label='20 days MA')
+    ax.plot(stock_100_ma[start_date:], label='100 days MA')
+
+    ax.legend()
+
+    plt.title('Adjusted Close Price - ' + ticker, fontsize=16)
+
+    # Define labels for x and y axis
+    plt.ylabel('Adjusted Close Price ($)', fontsize=14)
+    plt.xlabel('Year', fontsize=14)
+
+    plt.show()
+    plt.close()
+
 #get_close_price('GME', '2020-12-01', '2021-01-30')
-cumulative_return('2019-01-01', '2020-12-30', 'GOOGL', 'MSFT', 'SPY')
+#cumulative_return('2019-01-01', '2020-12-30', 'GOOGL', 'MSFT', 'SPY')
+moving_average('MSFT', '2019-05-24', '2020-12-30')
