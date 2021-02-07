@@ -73,4 +73,4 @@ def get_esg_data(company):
     plt.close()
     return output[0]['company_name']
 
-get_esg_data("jpm")
+#get_esg_data("jpm")
