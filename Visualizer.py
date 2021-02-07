@@ -34,30 +34,34 @@ def get_close_price(ticker, beginning, ending):
     plt.show()
     plt.close()
 
-tickers = ['GOOG', 'MSFT', 'SPY']
-df = yf.download(tickers, start='2019-01-01', end='2020-08-30')['Adj Close']
+# Create graph for cumulative returns
+def cumulative_return(beginning, ending, *tickers):
 
-plt.style.use('seaborn')
+    #tickers = ['GOOG', 'MSFT', 'SPY']
+    df = yf.download(tickers, start=beginning, end=ending)['Adj Close']
 
-fig, ax = plt.subplots(figsize=(12, 6))
+    plt.style.use('seaborn')
 
-# Plot cumulative returns for each symbol
-for ticker in tickers:
-    ax.plot((df[ticker].pct_change()+1).cumprod()-1, label=ticker)
+    fig, ax = plt.subplots(figsize=(12, 6))
 
-ax.legend()
+    # Plot cumulative returns for each symbol
+    for ticker in tickers:
+        ax.plot((df[ticker].pct_change()+1).cumprod()-1, label=ticker)
 
-# Show y axis in %
-ax.yaxis.set_major_formatter(mtick.PercentFormatter(1.0))
+    ax.legend()
 
-title = 'Cumulative Returns - ' + ', '.join(s for s in tickers)
-plt.title(title, fontsize=16)
+    # Show y axis in %
+    ax.yaxis.set_major_formatter(mtick.PercentFormatter(1.0))
 
-# Define the labels for x-axis and y-axis
-plt.ylabel('Cumulative Returns %', fontsize=14)
-plt.xlabel('Year', fontsize=14)
+    title = 'Cumulative Returns - ' + ', '.join(s for s in tickers)
+    plt.title(title, fontsize=16)
 
-plt.show()
-plt.close()
+    # Define the labels for x-axis and y-axis
+    plt.ylabel('Cumulative Returns %', fontsize=14)
+    plt.xlabel('Year', fontsize=14)
+
+    plt.show()
+    plt.close()
 
 #get_close_price('GME', '2020-12-01', '2021-01-30')
+cumulative_return('2019-01-01', '2020-12-30', 'GOOGL', 'MSFT', 'SPY')
