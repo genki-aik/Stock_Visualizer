@@ -16,7 +16,7 @@ def get_esg_data(company):
 
     #Convert to json object
     output = json.loads(response.text)
-    #print(output)
+    print(output)
 
     e_score = output[0]['environment_score']
     s_score = output[0]['social_score']
@@ -73,4 +73,4 @@ def get_esg_data(company):
     plt.close()
     return output[0]['company_name']
 
-#get_esg_data("jpm")
+get_esg_data("jpm")
