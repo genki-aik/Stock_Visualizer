@@ -40,7 +40,7 @@ def cumulative_return(beginning, ending, *tickers):
 
     #tickers = ['GOOG', 'MSFT', 'SPY']
     tickers = list(tickers)
-    
+
     if (len(tickers) < 2):
         raise ValueError("More than 2 tickers are needed to compare cumulative returns!")
        
@@ -100,5 +100,5 @@ def moving_average(ticker, beginning, ending):
     plt.close()
 
 #get_close_price('GME', '2020-12-01', '2021-01-30')
-cumulative_return('2019-01-01', '2020-12-30', 'AAPL')
+cumulative_return('2019-01-01', '2020-12-30', 'AAPL', 'MSFT')
 #moving_average('MSFT', '2019-05-24', '2020-12-30')
