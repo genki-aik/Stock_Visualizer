@@ -27,9 +27,23 @@ def get_esg_data(company):
 
     #print(type(output))
     #Access specific attributes
-    print("OUTPUT: " + output[0]['company_name'])
-    print(output[0]['total'])
+    print("ESG Grade Description:")
+    print("CCC -> B -> BB -> BBB -> A -> AA -> AAA")
+    print("\nAA -> AAA: A company leading its industry in managing the most significant ESG risks and opportunities")
+    print("BB -> A: A company with mixed or unexceptional track record of ESG risks and opportunities relative to industry peers")
+    print("CCC -> B: A company lagging its industry based on its high exposure and failure to manage significant ESG risks\n")
+    print("Company Name: " + output[0]['company_name'])
+    print("\nESG grades on a scale of AAA-CCC:")
+    print("Environment Grade: " + output[0]['environment_grade'])
+    print("Social Grade: " + output[0]['social_grade'])
+    print("Governance Grade: " + output[0]['governance_grade'])
+
+    print("\nESG Score on a scale from 0 - 1000: ")
+    print("Environment Score: " + str(output[0]['environment_score']))
+    print("Social Score: " + str(output[0]['social_score']))
+    print("Governance Score: " + str(output[0]['governance_score']))
+    print("Total ESG Score: " + str(output[0]['total']))
 
     return output[0]['company_name']
 
-get_esg_data("aapl")
+get_esg_data("jpm")
