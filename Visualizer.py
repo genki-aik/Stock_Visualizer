@@ -35,9 +35,16 @@ def get_close_price(ticker, beginning, ending):
     plt.close()
 
 # Create graph for cumulative returns
+# Needs at least 2 tickers to compare and visualize
 def cumulative_return(beginning, ending, *tickers):
 
     #tickers = ['GOOG', 'MSFT', 'SPY']
+    tickers = list(tickers)
+    
+    if (len(tickers) < 2):
+        raise ValueError("More than 2 tickers are needed to compare cumulative returns!")
+       
+
     df = yf.download(tickers, start=beginning, end=ending)['Adj Close']
 
     plt.style.use('seaborn')
@@ -93,5 +100,5 @@ def moving_average(ticker, beginning, ending):
     plt.close()
 
 #get_close_price('GME', '2020-12-01', '2021-01-30')
-#cumulative_return('2019-01-01', '2020-12-30', 'GOOGL', 'MSFT', 'SPY')
-moving_average('MSFT', '2019-05-24', '2020-12-30')
+cumulative_return('2019-01-01', '2020-12-30', 'AAPL')
+#moving_average('MSFT', '2019-05-24', '2020-12-30')
